@@ -2,24 +2,44 @@ import React from "react";
 import styled from "styled-components";
 import { IImage } from "types/types";
 
-interface IImageItemProps {
-  imageData: IImage;
+const opacityDuration = 0.5;
+const sizeDuration = 0.5;
+const size = {
+    pc: 320,
+    tablet: 240,
+    mobile: 180,
 }
 
-const duration = '0.5s';
-
 const ImageCover = styled.div`
-  width: 256px;
-  height: 256px;
   position: relative;
   display: inline-block;
   border-radius: 15px;
   overflow: hidden;
+
+  /* PC size */
+  @media all and (min-width: 1024px) {
+    width: ${size.pc}px;
+    height: ${size.pc}px;
+    transition: all ${sizeDuration}s;
+  }
+  /* tablet size */
+  @media all and (min-width: 768px) and (max-width: 1023px) {
+    width: ${size.tablet}px;
+    height: ${size.tablet}px;
+    transition: all ${sizeDuration}s;
+  }
+  /* mobile size */
+  @media all and (max-width: 767px) {
+    width: ${size.mobile}px;
+    height: ${size.mobile}px;
+    transition: all ${sizeDuration}s;
+  }
 `;
 
 const StyledImage = styled.img`
   width: 100%;
   height: 100%;
+  object-fit: cover;
   position: relative;
 `;
 
@@ -36,13 +56,11 @@ const SummaryCover = styled.div`
   transform: translate(-50%, -50%);
 
   opacity: 0;
-  transition-property: opacity;
-  transition-duration: ${duration};
-  
+  transition: opacity ${opacityDuration}s;
+
   :hover {
     opacity: 1;
-    transition-property: opacity;
-    transition-duration: ${duration};
+    transition: opacity ${opacityDuration}s;
   }
 `;
 
@@ -52,6 +70,10 @@ const StyledSummary = styled.div`
   text-align: center;
   padding: 10%;
 `;
+
+interface IImageItemProps {
+  imageData: IImage;
+}
 
 function ImageItem(props: IImageItemProps) {
   return (
