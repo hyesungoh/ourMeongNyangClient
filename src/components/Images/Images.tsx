@@ -10,7 +10,7 @@ const Images = (props: IImagesProps) => {
   return (
     <div>
       {props.imageDatas.map((imageData: IImage) => {
-        return <ImageItem imageData={imageData} />;
+        return <ImageItem imageData={imageData} key={imageData.imageURL} />;
       })}
     </div>
   );
