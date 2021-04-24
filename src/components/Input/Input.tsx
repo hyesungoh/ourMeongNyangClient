@@ -1,7 +1,15 @@
 import React from "react";
 
 const Input = () => {
-    return <div>input</div>;
+    const onFileChange = () => {
+        console.log("changed");
+    };
+
+    return (
+        <div>
+            <input type="file" accept="image/*" onChange={onFileChange} />
+        </div>
+    );
 };
 
 export default Input;

@@ -7,7 +7,7 @@ import Images from "components/Images/Images";
 const StyledMain = styled.main`
     width: 100vw;
     min-height: 100vh;
-    background-color: ${({ theme }) => theme.colorWhite};
+    background-color: ${({ theme }) => theme.colorGray};
 
     display: flex;
     flex-direction: column;
