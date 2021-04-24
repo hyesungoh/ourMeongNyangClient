@@ -1,7 +1,7 @@
 import React from "react";
 
-import Input from "components/Input";
-import Images from "components/Images";
+import Input from "components/Input/Input";
+import Images from "components/Images/Images";
 
 const Container = () => {
     return (
