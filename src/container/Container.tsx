@@ -5,13 +5,14 @@ import Input from "components/Input/Input";
 import Images from "components/Images/Images";
 
 const StyledMain = styled.main`
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+    width: 100vw;
+    min-height: 100vh;
+    background-color: ${({ theme }) => theme.colorWhite};
 
-    background-color: red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `;
 
 const Container = () => {
