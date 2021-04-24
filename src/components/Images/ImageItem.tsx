@@ -9,7 +9,7 @@ function ImageItem(props: IImageItemProps) {
     return (
         <div>
             <div>
-                <img src={ props.imageData.imageURL } />
+                <img src={ props.imageData.imageURL } alt='' />
             </div>
             <div>
                 { props.imageData.summary }
