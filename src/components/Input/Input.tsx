@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { v4 as uuid } from "uuid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpload } from "@fortawesome/free-solid-svg-icons";
 
 import { storageService } from "firebase/index";
 
@@ -55,50 +57,189 @@ const Input = () => {
 
     return (
         <StyledSection>
-            <InputImagePreview imageURL={image} />
-            <StyledFileLabel htmlFor="file">업로드</StyledFileLabel>
-            <StyledFileInput
-                id="file"
-                type="file"
-                accept="image/*"
-                onChange={onFileChange}
-            />
+            <StyledFileDiv>
+                <InputImagePreview imageURL={image} />
+                <StyledFileLabel htmlFor="file">
+                    <FontAwesomeIcon
+                        icon={faUpload}
+                        size="2x"
+                    ></FontAwesomeIcon>
+                </StyledFileLabel>
+                <StyledFileInput
+                    id="file"
+                    type="file"
+                    accept="image/*"
+                    onChange={onFileChange}
+                />
+            </StyledFileDiv>
 
-            <StyledTextLabel htmlFor="text">글쓰기</StyledTextLabel>
-            <StyledTextInput
-                id="text"
-                type="text"
-                onChange={onTextChange}
-                placeholder="우리집 호두 너무 귀엽죵"
-            />
-            <button onClick={onSubmit}>제출</button>
+            <StyledTextDiv>
+                <StyledInputDiv>
+                    <StyledTextInput
+                        id="text"
+                        type="text"
+                        required
+                        onChange={onTextChange}
+                    />
+                    <span></span>
+                    <StyledTextLabel htmlFor="text">글쓰기</StyledTextLabel>
+                </StyledInputDiv>
+
+                <StyledInputDiv>
+                    <StyledSubmitBtn onClick={onSubmit}>제출</StyledSubmitBtn>
+                    <span></span>
+                </StyledInputDiv>
+                <StyledFileSpan>귀여운 멍냥이 자랑해주세용</StyledFileSpan>
+            </StyledTextDiv>
         </StyledSection>
     );
 };
 
+// 이제 디자인 마무리 하고 > 이미지 프리뷰
+
 export default Input;
 
 const StyledSection = styled.section`
-    width: 100vw;
-    height: 100vh;
+    width: 50vw;
+    height: 60vh;
+    background-color: ${({ theme }) => theme.colorWhite};
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+const StyledFileDiv = styled.div`
+    position: relative;
+    width: 50%;
+    height: 100%;
     background-color: ${({ theme }) => theme.colorGray};
 
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 `;
 
 const StyledFileLabel = styled.label`
-    color: red;
+    width: 60%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 2.5px dashed ${({ theme }) => theme.colorNavy};
+    border-radius: 16px;
+    cursor: pointer;
+
+    color: ${({ theme }) => theme.colorNavy};
 `;
 
 const StyledFileInput = styled.input`
     display: none;
 `;
 
-const StyledTextLabel = styled.label``;
+const StyledFileSpan = styled.span`
+    position: absolute;
+    right: 0.8rem;
+    bottom: 0.8rem;
+
+    font-size: 0.8rem;
+    color: ${({ theme }) => theme.colorNavy};
+`;
+
+const StyledTextDiv = styled.div`
+    position: relative;
+    width: 50%;
+    height: 100%;
+    padding: 12% 0px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    background-color: ${({ theme }) => theme.colorWhite};
+`;
+
+const StyledInputDiv = styled.div`
+    position: relative;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+`;
+
+const StyledTextLabel = styled.label`
+    position: absolute;
+    top: 50%;
+    left: 4%;
+
+    transform: translateY(-50%);
+    transform-origin: left;
+    transition: transform 0.3s;
+`;
 
 const StyledTextInput = styled.input`
+    position: relative;
     all: unset;
+    box-sizing: border-box;
+    background-color: ${({ theme }) => theme.colorGray};
+
+    width: 100%;
+    height: 50px;
+    padding-left: 4%;
+
+    & + span {
+        width: 100%;
+        height: 3px;
+        background-color: ${({ theme }) => theme.colorNavy};
+        transform: scaleX(0);
+        transition: transform 0.3s;
+    }
+
+    &:focus,
+    &:valid {
+        & + span {
+            transform: scaleX(1);
+        }
+
+        & ~ ${StyledTextLabel} {
+            transform: translateY(-250%) scale(0.85);
+        }
+    }
+`;
+
+const StyledSubmitBtn = styled.button`
+    position: relative;
+    all: unset;
+    width: 100%;
+    height: 50px;
+    background-color: ${({ theme }) => theme.colorYellow};
+    text-align: center;
+    cursor: pointer;
+
+    transition: color 0.3s, background-color 0.3s;
+
+    & + span {
+        position: absolute;
+        bottom: -3px;
+        width: 100%;
+        height: 3px;
+        background-color: ${({ theme }) => theme.colorNavy};
+        transform: scaleX(0);
+        transition: transform 0.3s;
+    }
+
+    &:hover + span {
+        transform: scaleX(1);
+    }
+
+    &:active {
+        background-color: ${({ theme }) => theme.colorYellowClick};
+        color: ${({ theme }) => theme.colorWhite};
+
+        & + span {
+            transform: scaleX(1);
+        }
+    }
 `;

@@ -1,7 +1,7 @@
 import React from "react";
 
 const Images = () => {
-    return <div>images</div>;
+    return <div></div>;
 };
 
 export default Images;

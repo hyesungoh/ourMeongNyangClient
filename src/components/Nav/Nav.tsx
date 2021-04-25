@@ -1,6 +1,23 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
+const Nav = () => {
+    return (
+        <StyledNav>
+            <StyledH1>
+                우리<strong>멍냥</strong>
+            </StyledH1>
+            <StyledDiv>
+                <StyledSpan>개요</StyledSpan>
+                <StyledSpan>업로드</StyledSpan>
+                <StyledSpan>너네멍냥</StyledSpan>
+            </StyledDiv>
+        </StyledNav>
+    );
+};
+
+export default Nav;
+
 const UnderlineWhenHover = css`
     &::before {
         content: "";
@@ -59,20 +76,3 @@ const StyledSpan = styled.span`
 
     ${UnderlineWhenHover}
 `;
-
-const Nav = () => {
-    return (
-        <StyledNav>
-            <StyledH1>
-                우리<strong>멍냥</strong>
-            </StyledH1>
-            <StyledDiv>
-                <StyledSpan>개요</StyledSpan>
-                <StyledSpan>업로드</StyledSpan>
-                <StyledSpan>너네멍냥</StyledSpan>
-            </StyledDiv>
-        </StyledNav>
-    );
-};
-
-export default Nav;
