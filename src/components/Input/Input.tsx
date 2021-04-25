@@ -5,6 +5,7 @@ import { v4 as uuid } from "uuid";
 import { storageService } from "firebase/index";
 import InputFile from "./InputFile";
 import InputText from "./InputText";
+import InputLoading from "./InputLoading";
 
 const Input = () => {
     const [image, setImage] = useState<string>("");
@@ -16,16 +17,25 @@ const Input = () => {
             setIsLoading(true);
             const fileRef = storageService.ref().child(`${uuid()}`);
             try {
-                const response = await fileRef
-                    .putString(image as string, "data_url")
+                const response = await fileRef.putString(
+                    image as string,
+                    "data_url"
+                );
+
+                const fileURL = await response.ref
+                    .getDownloadURL()
                     .then((res) => {
+                        setIsLoading(false);
                         return res;
                     });
-                const fileURL = await response.ref.getDownloadURL();
 
+                console.log(fileURL);
+                console.log(text);
+                setImage("");
+                setText("");
                 // using axios
             } catch (error) {
-                console.log(error);
+                alert(error);
             }
         } else {
             alert("이미지를 업로드 후에 해주세용 !");
@@ -34,8 +44,9 @@ const Input = () => {
 
     return (
         <StyledSection>
+            <InputLoading isLoading={isLoading} />
             <InputFile image={image} setImage={setImage} />
-            <InputText setText={setText} onSubmit={onSubmit} />
+            <InputText text={text} setText={setText} onSubmit={onSubmit} />
         </StyledSection>
     );
 };
@@ -43,6 +54,9 @@ const Input = () => {
 export default Input;
 
 const StyledSection = styled.section`
+    position: relative;
+    overflow: hidden;
+
     width: 50vw;
     height: 60vh;
     background-color: ${({ theme }) => theme.colorWhite};

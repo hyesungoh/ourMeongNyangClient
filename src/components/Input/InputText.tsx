@@ -2,11 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 interface IInputText {
+    text: string;
     setText: React.Dispatch<React.SetStateAction<string>>;
     onSubmit: () => Promise<void>;
 }
 
-const InputText = ({ setText, onSubmit }: IInputText) => {
+const InputText = ({ text, setText, onSubmit }: IInputText) => {
     const onTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {
             target: { value },
@@ -21,6 +22,7 @@ const InputText = ({ setText, onSubmit }: IInputText) => {
                 <StyledTextInput
                     id="text"
                     type="text"
+                    value={text}
                     required
                     onChange={onTextChange}
                 />

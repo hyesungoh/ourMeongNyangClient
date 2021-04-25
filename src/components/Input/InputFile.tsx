@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import InputImagePreview from "./InputImagePreview";
@@ -53,8 +53,8 @@ const StyledFileDiv = styled.div`
 `;
 
 const StyledFileLabel = styled.label`
-    width: 60%;
-    height: 80%;
+    width: 160px;
+    height: 160px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,7 +62,6 @@ const StyledFileLabel = styled.label`
     border: 2.5px dashed ${({ theme }) => theme.colorNavy};
     border-radius: 16px;
     cursor: pointer;
-
     color: ${({ theme }) => theme.colorNavy};
 `;
 
