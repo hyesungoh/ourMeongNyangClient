@@ -2,50 +2,57 @@ import styled, { keyframes } from "styled-components";
 
 const sizeDuration = 0.5;
 const size = {
-    pc: 320,
-    tablet: 240,
+    pc: 280,
+    tablet: 230,
     mobile: 180,
 }
 const fadeDuration = 1.0;
-const fadeIn = keyframes`
+const fadeIn = (degree: number) => keyframes`
   0% {
-    transform: translate(0, 10%);
+    transform: translate(0, 10%) rotate(${degree}deg);
     opacity: 0;
   }
   100%{
-    transform: translate(0, 0);
+    transform: translate(0, 0) rotate(${degree}deg);
     opacity: 1;
   }
 `;
 
-export const ImageCover = styled.div`
+export const ImageCover = styled.div<{degree: number}>`
   position: relative;
   display: inline-block;
+
+  padding: 15px;
+  border: 1px solid lightgray;
+  box-shadow: 0 0 5px 0 lightgray;
+
   border-radius: 20px;
   overflow: hidden;
   margin: 10px;
   box-sizing:border-box;
-  border-top: 5px solid #fff;
+
+  transform: rotate(${(props) => props.degree}deg);
 
   /* PC size */
   @media all and (min-width: 1024px) {
     width: ${size.pc}px;
     height: ${size.pc}px;
-    transition: all ${sizeDuration}s;
+    transition: width ${sizeDuration}s, height ${sizeDuration}s;
   }
   /* tablet size */
   @media all and (min-width: 768px) and (max-width: 1023px) {
     width: ${size.tablet}px;
     height: ${size.tablet}px;
-    transition: all ${sizeDuration}s;
+    transition: width ${sizeDuration}s, height ${sizeDuration}s;
   }
   /* mobile size */
   @media all and (max-width: 767px) {
     width: ${size.mobile}px;
     height: ${size.mobile}px;
-    transition: all ${sizeDuration}s;
+    transition: width ${sizeDuration}s, height ${sizeDuration}s;
   }
-  animation: ${fadeIn} ${fadeDuration}s;
+
+  animation: ${(props) => fadeIn(props.degree)} ${fadeDuration}s;
 `;
 
 export const StyledImage = styled.img`

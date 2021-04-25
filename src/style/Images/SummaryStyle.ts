@@ -1,10 +1,10 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 const opacityDuration = 0.5;
 const fontSize = {
   pc: 16,
   tablet: 14,
-  mobile: 12,
+  mobile: 11,
 };
 
 export const SummaryCover = styled.div`
@@ -14,29 +14,34 @@ export const SummaryCover = styled.div`
   display: flex;
   align-items: center;
 
-  background-color: rgba(255, 255, 255, 0.3);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  opacity: 0;
-  transition: opacity ${opacityDuration}s;
+  div {
+    top: 100%;
+    transition: top ${opacityDuration}s;
+  }
 
   :hover {
-    opacity: 1;
-    transition: opacity ${opacityDuration}s;
+    div {
+      top: 70%;
+      transition: top ${opacityDuration}s;
+    }
   }
 `;
 
 export const StyledSummary = styled.div`
   width: 100%;
-  padding: 20px;
+  height: 100%;
+  padding: 5%;
+  position: absolute;
   
+  background-color: rgba(0 0 0 / 50%);
+  color: white;
   font-weight: 700;
   text-align: center;
   user-select: none;
-  background-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 0 40px 20px rgba(255, 255, 255, 0.5);
 
   /* PC size */
   @media all and (min-width: 1024px) {
