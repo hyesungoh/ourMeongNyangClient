@@ -4,8 +4,6 @@ interface ITheme {
     colorNavy: string;
     colorNavyOpacity: string;
     colorYellow: string;
-    colorYellowHover: string;
-    colorYellowClick: string;
 }
 
 const theme: ITheme = {
@@ -14,8 +12,6 @@ const theme: ITheme = {
     colorNavy: "#192051",
     colorNavyOpacity: "rgba(25,32,81,0.2)",
     colorYellow: "#ECD402",
-    colorYellowHover: "#AD9C02",
-    colorYellowClick: "#6E6301",
 };
 
 export default theme;

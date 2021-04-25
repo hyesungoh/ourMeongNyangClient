@@ -75,7 +75,7 @@ const StyledTextLabel = styled.label`
     position: absolute;
     top: 50%;
     left: 4%;
-
+    cursor: text;
     transform: translateY(-50%);
     transform-origin: left;
     transition: transform 0.3s;
