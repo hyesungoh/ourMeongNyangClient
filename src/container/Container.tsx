@@ -115,12 +115,6 @@ const fetchImage = () => {
 const displayMax = 60;
 
 const StyledMain = styled.main`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
   background-color: white;
 `;
 

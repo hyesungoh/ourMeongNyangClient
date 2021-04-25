@@ -23,7 +23,7 @@ export const ImageCover = styled.div`
   display: inline-block;
   border-radius: 20px;
   overflow: hidden;
-  margin: 1%;
+  margin: 10px;
   box-sizing:border-box;
   border-top: 5px solid #fff;
 

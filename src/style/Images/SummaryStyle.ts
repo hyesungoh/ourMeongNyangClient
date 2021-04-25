@@ -30,6 +30,8 @@ export const SummaryCover = styled.div`
 
 export const StyledSummary = styled.div`
   width: 100%;
+  padding: 20px;
+  
   font-weight: 700;
   text-align: center;
   user-select: none;
