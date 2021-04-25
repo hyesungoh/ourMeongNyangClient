@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { IImage } from "types/types";
 
 const opacityDuration = 0.5;
@@ -9,12 +9,24 @@ const size = {
     tablet: 240,
     mobile: 180,
 }
+const fadeDuration = 1.0;
+const fadeIn = keyframes`
+  0% {
+    transform: translate(0, 10%);
+    opacity: 0;
+  }
+  100%{
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+`;
 
 const ImageCover = styled.div`
   position: relative;
   display: inline-block;
-  border-radius: 15px;
+  border-radius: 20px;
   overflow: hidden;
+  margin: 1%;
 
   /* PC size */
   @media all and (min-width: 1024px) {
@@ -34,6 +46,7 @@ const ImageCover = styled.div`
     height: ${size.mobile}px;
     transition: all ${sizeDuration}s;
   }
+  animation: ${fadeIn} ${fadeDuration}s;
 `;
 
 const StyledImage = styled.img`
@@ -50,7 +63,7 @@ const SummaryCover = styled.div`
   display: flex;
   align-items: center;
 
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.3);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -67,8 +80,11 @@ const SummaryCover = styled.div`
 const StyledSummary = styled.div`
   width: 100%;
   font-size: 16px;
+  font-weight: 700;
   text-align: center;
-  padding: 10%;
+  user-select: none;
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 40px 20px rgba(255, 255, 255, 0.5);
 `;
 
 interface IImageItemProps {
