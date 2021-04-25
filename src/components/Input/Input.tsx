@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import InputImagePreview from "./InputImagePreview";
 
 const StyledSection = styled.section`
     width: 100vw;
@@ -27,34 +28,36 @@ const StyledTextInput = styled.input`
 `;
 
 const Input = () => {
-    const [image, setImage] = useState<string>("");
+    const [image, setImage] = useState<any>(null);
+    const [imagePreview, setImagePreview] = useState<string>("");
 
     const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {
             target: { files },
         } = e;
         const targetImage = files?.[0];
-        const reader = new FileReader();
 
+        setImage(targetImage);
+
+        const reader = new FileReader();
         reader.onloadend = () => {
-            setImage(reader.result as string);
+            setImagePreview(reader.result as string);
         };
         reader.readAsDataURL(targetImage as Blob);
     };
 
     const onSubmit = () => {
         const data = new FormData();
+        data.append("image", image);
 
-        console.log(image);
+        for (let value of data.values()) {
+            console.log(value);
+        }
     };
 
     return (
         <StyledSection>
-            {/*
-            1. 업로드 했으면 이미지 프리뷰로 보여주기
-            2. 전체적인 디자인 하기
-            3. S3 업로드 해보기
-            */}
+            <InputImagePreview />
             <StyledFileLabel htmlFor="file">업로드</StyledFileLabel>
             <StyledFileInput
                 id="file"
@@ -62,6 +65,7 @@ const Input = () => {
                 accept="image/*"
                 onChange={onFileChange}
             />
+
             <StyledTextLabel htmlFor="text">글쓰기</StyledTextLabel>
             <StyledTextInput
                 id="text"
