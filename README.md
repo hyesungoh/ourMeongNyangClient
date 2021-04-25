@@ -8,5 +8,5 @@
 
 ## Packages Used
 
-> axios, styled-components
+> axios, styled-components, firebase, uuid
 
