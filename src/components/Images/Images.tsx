@@ -1,6 +1,7 @@
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ImageItem from "components/Images/ImageItem";
+import { Loader, EndMessage } from "components/Images/Scroll";
 import { IImage } from "types/types";
 
 const randomDegree = (): number => {
@@ -32,7 +33,7 @@ class Images extends React.Component<IImagesProps> {
 
   isDisplayMax = () => {
     return this.state.imageDatas.length <= this.props.displayMax;
-  }
+  };
 
   render() {
     return (
@@ -40,12 +41,8 @@ class Images extends React.Component<IImagesProps> {
         dataLength={this.state.imageDatas.length}
         next={this.fetchMoreImages}
         hasMore={this.isDisplayMax()}
-        loader={<p>Loading...</p>}
-        endMessage={
-          <p style={{ textAlign: "center" }}>
-            <b>Yay! You have seen it all</b>
-          </p>
-        }
+        loader={Loader}
+        endMessage={EndMessage}
       >
         {this.state.imageDatas.map((imageData: IImage, index) => {
           return (
