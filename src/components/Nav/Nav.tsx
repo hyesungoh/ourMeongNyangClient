@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styled, { css } from "styled-components";
 
 const Nav = () => {
+    const [yIndex, setYIndex] = useState<number>(0);
+
+    const handleScroll = (e: any) => {
+        // console.log(e.deltaY);
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
     return (
         <StyledNav>
             <StyledH1>

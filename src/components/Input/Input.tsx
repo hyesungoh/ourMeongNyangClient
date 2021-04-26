@@ -65,4 +65,6 @@ const StyledSection = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    margin: 6rem 0px 8rem 0px;
 `;
