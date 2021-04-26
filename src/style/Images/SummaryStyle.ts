@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-const opacityDuration = 0.5;
 const fontSize = {
   pc: 16,
   tablet: 14,
@@ -13,32 +12,19 @@ export const SummaryCover = styled.div`
   position: absolute;
   display: flex;
   align-items: center;
-
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  div {
-    top: 100%;
-    transition: top ${opacityDuration}s;
-  }
-
-  :hover {
-    div {
-      top: 70%;
-      transition: top ${opacityDuration}s;
-    }
-  }
+  left: 0px;
 `;
 
 export const StyledSummary = styled.div`
   width: 100%;
-  height: 100%;
+  height: 33%;
   padding: 5%;
   position: absolute;
-  
-  background-color: rgba(0 0 0 / 50%);
-  color: white;
+  overflow: hidden;
+
+  background-color: #fff;
+  border: 1px solid lightgray;
+  box-shadow: 0 1px 5px 0 lightgray;
   font-weight: 700;
   text-align: center;
   user-select: none;

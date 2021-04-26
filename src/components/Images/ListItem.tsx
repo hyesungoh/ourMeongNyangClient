@@ -1,10 +1,11 @@
 import React from "react";
+import Image from "components/Images/Image";
 import Summary from "components/Images/Summary";
-import { IImage } from "types/types";
-import * as style from "style/Images/ListItemStyle";
+import { StyledListItem } from "style/Images/ListItemStyle";
 
 interface IImageItemProps {
-  imageData: IImage;
+  imageURL: string;
+  summary: string;
   degree: number;
 }
 
@@ -15,15 +16,15 @@ interface IListItemState {
 class ListItem extends React.Component<IImageItemProps> {
   state: IListItemState = {
     degree: this.props.degree,
-  }
+  };
 
   render() {
-      return (
-        <style.ImageCover degree={this.state.degree}>
-          <style.StyledImage src={this.props.imageData.imageURL} alt="" />
-          <Summary text={this.props.imageData.summary} />
-        </style.ImageCover>
-      );
+    return (
+      <StyledListItem>
+        <Image imageURL={this.props.imageURL} degree={this.state.degree} />
+        <Summary text={this.props.summary} />
+      </StyledListItem>
+    );
   }
 }
 

@@ -1,37 +1,31 @@
 import styled, { keyframes } from "styled-components";
+import { ImageCover } from "style/Images/ImageStyle";
+import { SummaryCover } from "style/Images/SummaryStyle";
 
 const sizeDuration = 0.5;
 const size = {
-    pc: 280,
-    tablet: 230,
-    mobile: 180,
-}
+  pc: 280,
+  tablet: 230,
+  mobile: 180,
+};
 const fadeDuration = 1.0;
-const fadeIn = (degree: number) => keyframes`
+const fadeIn = keyframes`
   0% {
-    transform: translate(0, 10%) rotate(${degree}deg);
+    transform: translate(0, 10%);
     opacity: 0;
   }
   100%{
-    transform: translate(0, 0) rotate(${degree}deg);
+    transform: translate(0, 0);
     opacity: 1;
   }
 `;
+const hoverDuration = 0.5;
 
-export const ImageCover = styled.div<{degree: number}>`
+export const StyledListItem = styled.div`
   position: relative;
   display: inline-block;
-
-  padding: 15px;
-  border: 1px solid lightgray;
-  box-shadow: 0 0 5px 0 lightgray;
-
-  border-radius: 20px;
   overflow: hidden;
-  margin: 10px;
-  box-sizing:border-box;
-
-  transform: rotate(${(props) => props.degree}deg);
+  padding: 10px;
 
   /* PC size */
   @media all and (min-width: 1024px) {
@@ -52,12 +46,26 @@ export const ImageCover = styled.div<{degree: number}>`
     transition: width ${sizeDuration}s, height ${sizeDuration}s;
   }
 
-  animation: ${(props) => fadeIn(props.degree)} ${fadeDuration}s;
-`;
+  animation: ${fadeIn} ${fadeDuration}s;
 
-export const StyledImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: relative;
+  ${ImageCover} {
+    transform: scale(1, 1) translate(0, 0);
+    transition: transform ${hoverDuration}s;
+  }
+
+  ${SummaryCover} {
+    transform: translate(0, 0);
+    transition: transform ${hoverDuration}s;
+  }
+
+  :hover {
+    ${ImageCover} {
+      transform: scale(0.7, 0.7) translate(0, -15%);
+      transition: transform ${hoverDuration}s;
+    }
+    ${SummaryCover} {
+      transform: translate(0, -70%);
+      transition: transform ${hoverDuration}s;
+    }
+  }
 `;
