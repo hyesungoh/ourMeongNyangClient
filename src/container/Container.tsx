@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Input from "components/Input/Input";
-import Images from "components/Images/Images";
+import ImageList from "components/Images/ImageList";
 
 const imageDatas = [
   {
@@ -122,7 +122,7 @@ const Container = () => {
   return (
     <StyledMain>
       <Input />
-      <Images
+      <ImageList
         imageDatas={imageDatas}
         fetchImage={fetchImage}
         displayMax={displayMax}

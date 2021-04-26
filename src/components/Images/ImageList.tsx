@@ -1,6 +1,6 @@
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import ImageItem from "components/Images/ImageItem";
+import ListItem from "components/Images/ListItem";
 import { Loader, EndMessage } from "components/Images/Scroll";
 import { IImage } from "types/types";
 
@@ -8,18 +8,18 @@ const randomDegree = (): number => {
   return Math.random() * 10 - 5;
 };
 
-interface IImagesProps {
+interface IImageListProps {
   imageDatas: IImage[];
   fetchImage(): IImage[];
   displayMax: number;
 }
 
-interface IImagesState {
+interface IImageListState {
   imageDatas: IImage[];
 }
 
-class Images extends React.Component<IImagesProps> {
-  state: IImagesState = {
+class ImageList extends React.Component<IImageListProps> {
+  state: IImageListState = {
     imageDatas: this.props.imageDatas,
   };
 
@@ -47,7 +47,7 @@ class Images extends React.Component<IImagesProps> {
         {this.state.imageDatas.map((imageData: IImage, index) => {
           return (
             // key값은 임시로 넣어둔 것임 (나중에는 id값을 받아서 교체)
-            <ImageItem
+            <ListItem
               imageData={imageData}
               degree={randomDegree()}
               key={index + imageData.imageURL}
@@ -59,4 +59,4 @@ class Images extends React.Component<IImagesProps> {
   }
 }
 
-export default Images;
+export default ImageList;

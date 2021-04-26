@@ -1,19 +1,19 @@
 import React from "react";
 import Summary from "components/Images/Summary";
 import { IImage } from "types/types";
-import * as style from "style/Images/ImageItemStyle";
+import * as style from "style/Images/ListItemStyle";
 
 interface IImageItemProps {
   imageData: IImage;
   degree: number;
 }
 
-interface IImageItemState {
+interface IListItemState {
   degree: number;
 }
 
-class ImageItem extends React.Component<IImageItemProps> {
-  state: IImageItemState = {
+class ListItem extends React.Component<IImageItemProps> {
+  state: IListItemState = {
     degree: this.props.degree,
   }
 
@@ -27,4 +27,4 @@ class ImageItem extends React.Component<IImageItemProps> {
   }
 }
 
-export default ImageItem;
+export default ListItem;
