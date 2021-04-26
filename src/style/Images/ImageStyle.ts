@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const ImageCover = styled.div`
-    width: 100%;
-    height: 100%;
-`
+  width: 100%;
+  height: 100%;
+`;
 
 export const PhotoFrame = styled.div<{ degree: number }>`
   width: 100%;
@@ -11,9 +11,8 @@ export const PhotoFrame = styled.div<{ degree: number }>`
 
   padding: 5%;
   border: 1px solid lightgray;
+  border-radius: 5%;
   box-shadow: 0 0 5px 0 lightgray;
-
-  border-radius: 20px;
 
   transform: rotate(${(props) => props.degree}deg);
 `;
