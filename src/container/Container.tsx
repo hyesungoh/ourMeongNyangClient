@@ -115,7 +115,15 @@ const fetchImage = () => {
 const displayMax = 60;
 
 const StyledMain = styled.main`
-  background-color: white;
+  width: 100vw;
+  min-height: 100vh;
+  height: auto;
+  background-color: ${({ theme }) => theme.colorWhite};
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Container = () => {
