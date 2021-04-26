@@ -41,8 +41,8 @@ class ImageList extends React.Component<IImageListProps> {
         dataLength={this.state.imageDatas.length}
         next={this.fetchMoreImages}
         hasMore={this.isDisplayMax()}
-        loader={Loader}
-        endMessage={EndMessage}
+        loader={<Loader />}
+        endMessage={<EndMessage />}
       >
         {this.state.imageDatas.map((imageData: IImage, index) => {
           return (
