@@ -39,7 +39,8 @@ const UnderlineWhenHover = css`
 `;
 
 const StyledNav = styled.nav`
-    position: absolute;
+    position: sticky;
+    z-index: 9;
     top: 0;
 
     width: 100vw;
