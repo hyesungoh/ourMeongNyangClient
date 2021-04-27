@@ -7,6 +7,7 @@ import InputFile from "./InputFile";
 import InputText from "./InputText";
 import InputLoading from "./InputLoading";
 
+
 const Input = () => {
     const [image, setImage] = useState<string>("");
     const [text, setText] = useState<string>("");
@@ -53,7 +54,7 @@ const Input = () => {
 
 export default Input;
 
-const StyledSection = styled.section`
+export const StyledSection = styled.section`
     position: relative;
     overflow: hidden;
 
@@ -65,4 +66,20 @@ const StyledSection = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    margin: 6rem 0px 8rem 0px;
+
+    @media screen and (max-width: ${({ theme }) => theme.sizeTablet}) {
+        width: 70vw;
+        height: 60vh;
+        flex-direction: column;
+        margin: 3rem 0px 4rem 0px;
+    }
+
+    @media screen and (max-width: ${({ theme }) => theme.sizeMobile}) {
+        width: 85vw;
+        height: 60vh;
+        flex-direction: column;
+        margin: 3rem 0px 4rem 0px;
+    }
 `;
