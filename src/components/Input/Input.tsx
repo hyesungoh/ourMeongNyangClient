@@ -15,7 +15,7 @@ const Input = () => {
 
     const onSubmit = async () => {
         if (image !== "") {
-            if (text.length > 3) {
+            if (text.length < 3) {
                 alert("3글자 이상 작성해주세요 !!");
                 return;
             }
