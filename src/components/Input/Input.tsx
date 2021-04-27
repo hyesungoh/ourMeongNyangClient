@@ -15,6 +15,11 @@ const Input = () => {
 
     const onSubmit = async () => {
         if (image !== "") {
+            if (text.length > 3) {
+                alert("3글자 이상 작성해주세요 !!");
+                return;
+            }
+
             setIsLoading(true);
             const fileRef = storageService.ref().child(`${uuid()}`);
             try {
@@ -30,14 +35,12 @@ const Input = () => {
                         return res;
                     });
 
-                console.log(fileURL);
-                console.log(text);
                 // using axios
                 await axios.post(
                     "https://swm-chatbot-9gsxzg-cydssl.run.goorm.io/chatbot/create",
-                    { imageURL: fileURL, summary: text }
+                    { data: { imageURL: fileURL, summary: text } }
                 );
-                
+
                 setImage("");
                 setText("");
             } catch (error) {

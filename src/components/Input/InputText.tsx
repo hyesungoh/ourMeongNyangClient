@@ -63,7 +63,7 @@ const StyledTextDiv = styled.div`
     align-items: center;
 
     background-color: ${({ theme }) => theme.colorWhite};
-    
+
     @media screen and (max-width: ${({ theme }) => theme.sizeTablet}) {
         width: 100%;
         height: 50%;
