@@ -26,7 +26,7 @@ const Nav = () => {
 
     return (
         <StyledNav>
-            <StyledH1>
+            <StyledH1 onClick={() => onNavClick(inputRef)}>
                 우리<strong>멍냥</strong>
             </StyledH1>
             <StyledDiv>

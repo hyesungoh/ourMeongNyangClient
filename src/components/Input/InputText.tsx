@@ -67,6 +67,7 @@ const StyledTextDiv = styled.div`
     @media screen and (max-width: ${({ theme }) => theme.sizeTablet}) {
         width: 100%;
         height: 50%;
+        padding: 4%;
     }
 `;
 
