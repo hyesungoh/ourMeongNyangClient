@@ -4,7 +4,6 @@ import styled, { css } from "styled-components";
 import { StyledSection } from "components/Input/Input";
 
 const Nav = () => {
-    const [yIndex, setYIndex] = useState<number>(0);
     const [inputRef, setInputRef] = useState<Element | null>(null);
     const [imageRef, setImageRef] = useState<Element | null>(null);
 
