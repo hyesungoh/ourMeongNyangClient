@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const fontSize = {
-  pc: 16,
-  tablet: 14,
-  mobile: 11,
+  pc: 24,
+  tablet: 20,
+  mobile: 16,
 };
 
 export const SummaryCover = styled.div`
@@ -17,7 +17,6 @@ export const SummaryCover = styled.div`
 
 export const StyledSummary = styled.div`
   width: 100%;
-  height: 33%;
   padding: 5%;
   position: absolute;
   overflow: hidden;
@@ -25,8 +24,9 @@ export const StyledSummary = styled.div`
   background-color: #fff;
   border: 1px solid lightgray;
   box-shadow: 0 1px 5px 0 lightgray;
-  font-weight: 700;
+  font-family: "Nanum Pen Script", cursive;
   text-align: center;
+
   user-select: none;
 
   /* PC size */
