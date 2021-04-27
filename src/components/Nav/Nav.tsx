@@ -20,7 +20,7 @@ const Nav = () => {
         setInputRef(tempInputRef);
 
         const tempImageRef = document.querySelector(
-            ".infinite-scroll-component__outerdiv"
+            ".infinite-scroll-component"
         );
         setImageRef(tempImageRef);
     }, []);

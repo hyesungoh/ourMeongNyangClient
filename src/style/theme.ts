@@ -5,6 +5,7 @@ interface ITheme {
     colorNavyOpacity: string;
     colorYellow: string;
     sizeMobile: string;
+    sizeTablet: string;
 }
 
 const theme: ITheme = {
@@ -14,6 +15,7 @@ const theme: ITheme = {
     colorNavyOpacity: "rgba(25,32,81,0.2)",
     colorYellow: "#ECD402",
     sizeMobile: "768px",
+    sizeTablet: "1100px",
 };
 
 export default theme;

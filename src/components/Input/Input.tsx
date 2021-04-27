@@ -68,11 +68,19 @@ export const StyledSection = styled.section`
 
     margin: 6rem 0px 8rem 0px;
 
+    @media screen and (max-width: ${({ theme }) => theme.sizeTablet}) {
+        width: 70vw;
+        height: 60vh;
+        flex-direction: column;
+        margin: 3rem 0px 4rem 0px;
+    }
+    
     @media screen and (max-width: ${({ theme }) => theme.sizeMobile}) {
         width: 85vw;
         height: 60vh;
         flex-direction: column;
-
         margin: 3rem 0px 4rem 0px;
     }
+
+    
 `;

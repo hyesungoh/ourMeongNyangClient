@@ -24,7 +24,7 @@ const InputText = ({ text, setText, onSubmit }: IInputText) => {
                     type="text"
                     value={text}
                     required
-                    maxLength={50}
+                    maxLength={45}
                     onChange={onTextChange}
                 />
                 <span></span>
@@ -63,8 +63,8 @@ const StyledTextDiv = styled.div`
     align-items: center;
 
     background-color: ${({ theme }) => theme.colorWhite};
-
-    @media screen and (max-width: ${({ theme }) => theme.sizeMobile}) {
+    
+    @media screen and (max-width: ${({ theme }) => theme.sizeTablet}) {
         width: 100%;
         height: 50%;
     }

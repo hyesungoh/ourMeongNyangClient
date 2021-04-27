@@ -50,8 +50,8 @@ const StyledFileDiv = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
-    @media screen and (max-width: ${({ theme }) => theme.sizeMobile}) {
+    
+    @media screen and (max-width: ${({ theme }) => theme.sizeTablet}) {
         width: 100%;
         height: 50%;
     }
