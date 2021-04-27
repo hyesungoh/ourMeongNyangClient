@@ -8,5 +8,4 @@
 
 ## Packages Used
 
-> axios, styled-components, firebase, uuid, netlify-cli
-
+> axios, styled-components, firebase, uuid, netlify-cli, dotenv
