@@ -1,18 +1,28 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
+
+import { StyledSection } from "components/Input/Input";
 
 const Nav = () => {
     const [yIndex, setYIndex] = useState<number>(0);
+    const [inputRef, setInputRef] = useState<Element | null>(null);
+    const [imageRef, setImageRef] = useState<Element | null>(null);
 
-    const handleScroll = (e: any) => {
-        // console.log(e.deltaY);
+    const onNavClick = (el: Element | null) => {
+        const blockByEl = el === imageRef ? "start" : "center";
+        if (el) {
+            el.scrollIntoView({ behavior: "smooth", block: blockByEl });
+        }
     };
 
     useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
+        const tempInputRef = document.querySelector(StyledSection);
+        setInputRef(tempInputRef);
+
+        const tempImageRef = document.querySelector(
+            ".infinite-scroll-component__outerdiv"
+        );
+        setImageRef(tempImageRef);
     }, []);
 
     return (
@@ -21,9 +31,12 @@ const Nav = () => {
                 우리<strong>멍냥</strong>
             </StyledH1>
             <StyledDiv>
-                <StyledSpan>개요</StyledSpan>
-                <StyledSpan>업로드</StyledSpan>
-                <StyledSpan>너네멍냥</StyledSpan>
+                <StyledSpan onClick={() => onNavClick(inputRef)}>
+                    업로드
+                </StyledSpan>
+                <StyledSpan onClick={() => onNavClick(imageRef)}>
+                    너네멍냥
+                </StyledSpan>
             </StyledDiv>
         </StyledNav>
     );

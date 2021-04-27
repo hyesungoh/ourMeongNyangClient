@@ -53,7 +53,7 @@ const Input = () => {
 
 export default Input;
 
-const StyledSection = styled.section`
+export const StyledSection = styled.section`
     position: relative;
     overflow: hidden;
 
@@ -67,4 +67,12 @@ const StyledSection = styled.section`
     align-items: center;
 
     margin: 6rem 0px 8rem 0px;
+
+    @media screen and (max-width: ${({ theme }) => theme.sizeMobile}) {
+        width: 85vw;
+        height: 60vh;
+        flex-direction: column;
+
+        margin: 3rem 0px 4rem 0px;
+    }
 `;
