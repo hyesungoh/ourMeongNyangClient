@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { v4 as uuid } from "uuid";
+import axios from "axios";
 
 import { storageService } from "firebase/index";
 import InputFile from "./InputFile";
 import InputText from "./InputText";
 import InputLoading from "./InputLoading";
-
 
 const Input = () => {
     const [image, setImage] = useState<string>("");
@@ -32,9 +32,14 @@ const Input = () => {
 
                 console.log(fileURL);
                 console.log(text);
+                // using axios
+                await axios.post(
+                    "https://swm-chatbot-9gsxzg-cydssl.run.goorm.io/chatbot/create",
+                    { imageURL: fileURL, summary: text }
+                );
+                
                 setImage("");
                 setText("");
-                // using axios
             } catch (error) {
                 alert(error);
             }

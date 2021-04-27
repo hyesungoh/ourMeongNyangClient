@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Input from "components/Input/Input";
 import ImageList from "components/Images/ImageList";
+import axios from "axios";
 
 const imageDatas = [
   {
@@ -112,6 +113,7 @@ const StyledMain = styled.main`
 `;
 
 const Container = () => {
+
   return (
     <StyledMain>
       <Input />
