@@ -9,6 +9,8 @@ import InputText from "./InputText";
 import InputLoading from "./InputLoading";
 
 const Input = () => {
+    const POST_URL: string =
+        "https://swm-chatbot-9gsxzg-cydssl.run.goorm.io/chatbot/create";
     const [image, setImage] = useState<string>("");
     const [text, setText] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -36,10 +38,9 @@ const Input = () => {
                     });
 
                 // using axios
-                await axios.post(
-                    "https://swm-chatbot-9gsxzg-cydssl.run.goorm.io/chatbot/create",
-                    { data: { imageURL: fileURL, summary: text } }
-                );
+                await axios.post(POST_URL, {
+                    data: { imageURL: fileURL, summary: text },
+                });
 
                 setImage("");
                 setText("");

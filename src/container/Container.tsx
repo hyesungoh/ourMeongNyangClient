@@ -11,45 +11,45 @@ const displayMax = 60;
 let index = 0;
 
 interface IAxiosData {
-  data: {
-    data: IImage[];
-  };
+    data: {
+        data: IImage[];
+    };
 }
 
 const fetchImage = async () => {
-  let result = await axios
-    .get(getURL, {
-      params: { startIndex: index, endIndex: index + onceFetchCount },
-    })
-    .then((response: IAxiosData) => response.data.data)
-    .catch((): IImage[] => [{ id: -1, imageURL: "None", summary: "None" }]);
-  index += onceFetchCount;
-  return result;
+    let result = await axios
+        .get(getURL, {
+            params: { startIndex: index, endIndex: index + onceFetchCount },
+        })
+        .then((response: IAxiosData) => response.data.data)
+        .catch((): IImage[] => [{ id: -1, imageURL: "None", summary: "None" }]);
+    index += onceFetchCount;
+    return result;
 };
 
-const StyledMain = styled.main`
-  width: 100vw;
-  min-height: 100vh;
-  height: auto;
-  background-color: ${({ theme }) => theme.colorWhite};
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
 const Container = () => {
-  return (
-    <StyledMain>
-      <Input />
-      <ImageList
-        fetchImage={fetchImage}
-        displayMax={displayMax}
-        onceFetchCount={onceFetchCount}
-      />
-    </StyledMain>
-  );
+    return (
+        <StyledMain>
+            <Input />
+            <ImageList
+                fetchImage={fetchImage}
+                displayMax={displayMax}
+                onceFetchCount={onceFetchCount}
+            />
+        </StyledMain>
+    );
 };
 
 export default Container;
+
+const StyledMain = styled.main`
+    width: 100vw;
+    min-height: 100vh;
+    height: auto;
+    background-color: ${({ theme }) => theme.colorWhite};
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
