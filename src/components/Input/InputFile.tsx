@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUpload } from "@fortawesome/free-solid-svg-icons";
+import { faUpload, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import InputImagePreview from "./InputImagePreview";
 
 interface IInputFile {
@@ -10,6 +10,8 @@ interface IInputFile {
 }
 
 const InputFile = ({ image, setImage }: IInputFile) => {
+    const fileInput = useRef<HTMLInputElement | null>(null);
+
     const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {
             target: { files },
@@ -23,6 +25,13 @@ const InputFile = ({ image, setImage }: IInputFile) => {
         reader.readAsDataURL(targetImage as Blob);
     };
 
+    const onFileDelete = () => {
+        if (window.confirm("더 귀여운 사진을 찾으시는 중인가요??")) {
+            setImage("");
+            if (fileInput.current !== null) fileInput.current.value = "";
+        }
+    };
+
     return (
         <StyledFileDiv>
             <InputImagePreview imageURL={image} />
@@ -32,9 +41,13 @@ const InputFile = ({ image, setImage }: IInputFile) => {
             <StyledFileInput
                 id="file"
                 type="file"
+                ref={fileInput}
                 accept="image/*"
                 onChange={onFileChange}
             />
+            <StyledFileDeleteBtn imageURL={image} onClick={onFileDelete}>
+                <FontAwesomeIcon icon={faTrashAlt} size="2x"></FontAwesomeIcon>
+            </StyledFileDeleteBtn>
         </StyledFileDiv>
     );
 };
@@ -50,7 +63,7 @@ const StyledFileDiv = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     @media screen and (max-width: ${({ theme }) => theme.sizeTablet}) {
         width: 100%;
         height: 50%;
@@ -72,4 +85,15 @@ const StyledFileLabel = styled.label`
 
 const StyledFileInput = styled.input`
     display: none;
+`;
+
+const StyledFileDeleteBtn = styled.div<{ imageURL: string }>`
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    color: ${({ theme }) => theme.colorWhite};
+    cursor: pointer;
+
+    transform: ${({ imageURL }) => (imageURL === "" ? "scale(0)" : "scale(1)")};
+    transition: transform 0.8s;
 `;
