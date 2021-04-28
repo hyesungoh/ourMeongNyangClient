@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { v4 as uuid } from "uuid";
 import axios from "axios";
@@ -14,48 +14,52 @@ const Input = () => {
     const [image, setImage] = useState<string>("");
     const [text, setText] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const fileInput = useRef<HTMLInputElement | null>(null);
 
     const onSubmit = async () => {
-        if (image !== "") {
-            if (text.length < 3) {
-                alert("3글자 이상 작성해주세요 !!");
-                return;
-            }
-
-            setIsLoading(true);
-            const fileRef = storageService.ref().child(`${uuid()}`);
-            try {
-                const response = await fileRef.putString(
-                    image as string,
-                    "data_url"
-                );
-
-                const fileURL = await response.ref
-                    .getDownloadURL()
-                    .then((res) => {
-                        setIsLoading(false);
-                        return res;
-                    });
-
-                // using axios
-                await axios.post(POST_URL, {
-                    data: { imageURL: fileURL, summary: text },
-                });
-
-                setImage("");
-                setText("");
-            } catch (error) {
-                alert(error);
-            }
-        } else {
+        if (image === "") {
             alert("이미지를 업로드 후에 해주세용 !");
+            return;
+        }
+
+        if (text.length < 3) {
+            alert("3글자 이상 작성해주세요 !!");
+            return;
+        }
+
+        setIsLoading(true);
+        const fileRef = storageService.ref().child(`${uuid()}`);
+        try {
+            const response = await fileRef.putString(
+                image as string,
+                "data_url"
+            );
+
+            // 이미지 firebase 업로드 후 해당 URL 저장
+            const fileURL = await response.ref.getDownloadURL();
+            // 업로드된 URL과 작성된 text를 이용해 서버에 송신
+            await axios.post(POST_URL, {
+                data: { imageURL: fileURL, summary: text },
+            });
+
+            // 초기화
+            setText("");
+            setImage("");
+            if (fileInput.current !== null) fileInput.current.value = "";
+            setIsLoading(false);
+        } catch (error) {
+            alert(error);
         }
     };
 
     return (
         <StyledSection>
             <InputLoading isLoading={isLoading} />
-            <InputFile image={image} setImage={setImage} />
+            <InputFile
+                image={image}
+                setImage={setImage}
+                fileInput={fileInput}
+            />
             <InputText text={text} setText={setText} onSubmit={onSubmit} />
         </StyledSection>
     );

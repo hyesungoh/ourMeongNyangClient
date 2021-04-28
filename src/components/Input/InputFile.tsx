@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
@@ -7,11 +7,10 @@ import InputImagePreview from "./InputImagePreview";
 interface IInputFile {
     image: string;
     setImage: React.Dispatch<React.SetStateAction<string>>;
+    fileInput: React.MutableRefObject<HTMLInputElement | null>;
 }
 
-const InputFile = ({ image, setImage }: IInputFile) => {
-    const fileInput = useRef<HTMLInputElement | null>(null);
-
+const InputFile = ({ image, setImage, fileInput }: IInputFile) => {
     const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {
             target: { files },
