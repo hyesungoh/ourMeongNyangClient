@@ -5,66 +5,72 @@ import { Loader, EndMessage } from "components/Images/Scroll";
 import { IImage } from "types/types";
 
 const randomDegree = (): number => {
-    return Math.random() * 10 - 5;
+  return Math.random() * 10 - 5;
 };
 
 interface IImageListProps {
-    imageDatas: IImage[];
-    fetchImage(): IImage[];
-    displayMax: number;
+  fetchImage(): Promise<IImage[]>;
+  displayMax: number;
+  onceFetchCount: number;
 }
 
 interface IImageListState {
-    imageDatas: IImage[];
+  imageDatas: IImage[];
+  isEnded: boolean;
 }
 
 class ImageList extends React.Component<IImageListProps> {
-    state: IImageListState = {
-        imageDatas: this.props.imageDatas,
-    };
+  state: IImageListState = {
+    imageDatas: [],
+    isEnded: false,
+  };
 
-    fetchMoreImages = () => {
-        setTimeout(() => {
-            this.setState({
-                imageDatas: this.state.imageDatas.concat(
-                    this.props.fetchImage()
-                ),
-            });
-        }, 500);
-    };
+  fetchMoreImages = () => {
+    this.props.fetchImage().then((response: IImage[]) => {
+      if (response.length < this.props.onceFetchCount) {
+        this.setState({ isEnded: true });
+        if (response.length === 0 || response[0].id === -1) return;
+      }
+      this.setState({
+        imageDatas: this.state.imageDatas.concat(response),
+      });
+    });
+  };
 
-    isDisplayMax = () => {
-        return this.state.imageDatas.length <= this.props.displayMax;
-    };
+  isAllowMore = () => {
+    return (
+      this.state.imageDatas.length < this.props.displayMax &&
+      !this.state.isEnded
+    );
+  };
 
-    render() {
-        return (
-            <InfiniteScroll
-                dataLength={this.state.imageDatas.length}
-                next={this.fetchMoreImages}
-                hasMore={this.isDisplayMax()}
-                loader={<Loader />}
-                endMessage={<EndMessage />}
-                style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    justifyContent: "center",
-                }}
-            >
-                {this.state.imageDatas.map((imageData: IImage, index) => {
-                    return (
-                        // key값은 임시로 넣어둔 것임 (나중에는 id값을 받아서 교체)
-                        <ListItem
-                            imageURL={imageData.imageURL}
-                            summary={imageData.summary}
-                            degree={randomDegree()}
-                            key={index + imageData.imageURL}
-                        />
-                    );
-                })}
-            </InfiniteScroll>
-        );
-    }
+  render() {
+    return (
+      <InfiniteScroll
+        dataLength={this.state.imageDatas.length}
+        next={this.fetchMoreImages}
+        hasMore={this.isAllowMore()}
+        loader={<Loader />}
+        endMessage={<EndMessage />}
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+        }}
+      >
+        {this.state.imageDatas.map((imageData: IImage, index) => {
+          return (
+            <ListItem
+              imageURL={imageData.imageURL}
+              summary={imageData.summary}
+              degree={randomDegree()}
+              key={imageData.id}
+            />
+          );
+        })}
+      </InfiniteScroll>
+    );
+  }
 }
 
 export default ImageList;
