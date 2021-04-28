@@ -51,20 +51,19 @@ class ImageList extends React.Component<IImageListProps> {
                     justifyContent: "center",
                 }}
             >
-                {this.state.imageDatas.map((imageData: IImage, index) => {
-                    return (
-                        // key값은 임시로 넣어둔 것임 (나중에는 id값을 받아서 교체)
-                        <ListItem
-                            imageURL={imageData.imageURL}
-                            summary={imageData.summary}
-                            degree={randomDegree()}
-                            key={index + imageData.imageURL}
-                        />
-                    );
-                })}
-            </InfiniteScroll>
-        );
-    }
+        {this.state.imageDatas.map((imageData: IImage, index) => {
+          return (
+            <ListItem
+              imageURL={imageData.imageURL}
+              summary={imageData.summary}
+              degree={randomDegree()}
+              key={imageData.id}
+            />
+          );
+        })}
+      </InfiniteScroll>
+    );
+  }
 }
 
 export default ImageList;
