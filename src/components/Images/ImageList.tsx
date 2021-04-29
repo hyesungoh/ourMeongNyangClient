@@ -56,6 +56,7 @@ class ImageList extends React.Component<IImageListProps> {
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "center",
+          overflow: "hidden",
         }}
       >
         {this.state.imageDatas.map((imageData: IImage, index) => {
