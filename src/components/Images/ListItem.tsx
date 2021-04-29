@@ -4,6 +4,7 @@ import Summary from "components/Images/Summary";
 import { StyledListItem } from "style/Images/ListItemStyle";
 
 interface IImageItemProps {
+    id: number;
     imageURL: string;
     summary: string;
     degree: number;
@@ -20,7 +21,7 @@ class ListItem extends React.Component<IImageItemProps> {
 
     render() {
         return (
-            <StyledListItem>
+            <StyledListItem id={this.props.id.toString()}>
                 <Image
                     imageURL={this.props.imageURL}
                     degree={this.state.degree}

@@ -61,6 +61,7 @@ class ImageList extends React.Component<IImageListProps> {
         {this.state.imageDatas.map((imageData: IImage, index) => {
           return (
             <ListItem
+              id={imageData.id}
               imageURL={imageData.imageURL}
               summary={imageData.summary}
               degree={randomDegree()}
