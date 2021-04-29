@@ -11,6 +11,9 @@ import InputLoading from "./InputLoading";
 const Input = () => {
     const POST_URL: string =
         "https://swm-chatbot-9gsxzg-cydssl.run.goorm.io/chatbot/create";
+    const ALERT_MSG_IMG: string = "이미지를 업로드 후에 해주세용 !";
+    const ALERT_MSG_TEXT: string = "3글자 이상 작성해주세요 !!";
+
     const [image, setImage] = useState<string>("");
     const [text, setText] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -18,12 +21,12 @@ const Input = () => {
 
     const onSubmit = async () => {
         if (image === "") {
-            alert("이미지를 업로드 후에 해주세용 !");
+            alert(ALERT_MSG_IMG);
             return;
         }
 
         if (text.length < 3) {
-            alert("3글자 이상 작성해주세요 !!");
+            alert(ALERT_MSG_TEXT);
             return;
         }
 

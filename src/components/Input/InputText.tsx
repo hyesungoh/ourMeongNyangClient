@@ -8,6 +8,10 @@ interface IInputText {
 }
 
 const InputText = ({ text, setText, onSubmit }: IInputText) => {
+    const TEXT_INPUT: string = "사연 쓰기";
+    const TEXT_SUBMIT: string = "제출";
+    const TEXT_PS: string = "귀여운 멍냥이 자랑해주세용";
+
     const onTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {
             target: { value },
@@ -28,14 +32,16 @@ const InputText = ({ text, setText, onSubmit }: IInputText) => {
                     onChange={onTextChange}
                 />
                 <span></span>
-                <StyledTextLabel htmlFor="text">글쓰기</StyledTextLabel>
+                <StyledTextLabel htmlFor="text">{TEXT_INPUT}</StyledTextLabel>
             </StyledInputDiv>
 
             <StyledInputDiv>
-                <StyledSubmitBtn onClick={onSubmit}>제출</StyledSubmitBtn>
+                <StyledSubmitBtn onClick={onSubmit}>
+                    {TEXT_SUBMIT}
+                </StyledSubmitBtn>
                 <span></span>
             </StyledInputDiv>
-            <StyledTextSpan>귀여운 멍냥이 자랑해주세용</StyledTextSpan>
+            <StyledTextSpan>{TEXT_PS}</StyledTextSpan>
         </StyledTextDiv>
     );
 };
